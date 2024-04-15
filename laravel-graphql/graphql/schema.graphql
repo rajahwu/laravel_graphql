@@ -1,4 +1,18 @@
-type Query {
-  greetings: String!
+
+type User{
+    id: ID!
+    name: String!
+    email: String!
+}
+
+type Query{
+    users: [User!]! @paginate
+    user(id: ID! @eq): User @find
+}
+
+type Mutation{
+    createUser(name: String!, email: String!, password: String!): User! @create
+    updateUser(id: ID!, name: String, email: String): User! @update
+    deleteUser(id: ID!): User! @delete
 }
 
